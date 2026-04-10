@@ -1,0 +1,20 @@
+.orders-container {
+  padding: 24px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #dcdcdc;
+  padding: 10px;
+  text-align: left;
+}
+
+.orders-table th {
+  font-weight: 600;
+}
