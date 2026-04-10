@@ -3,6 +3,13 @@ import { CommonModule } from '@angular/common';
 import { OrdersService } from '../../services/orders/orders.service';
 import { Order } from '../../interfaces/order.interface';
 
+/**
+ * Página de pedidos.
+ *
+ * @remarks
+ * Este componente se encarga de mostrar el listado
+ * de pedidos obtenidos desde el backend.
+ */
 @Component({
   selector: 'app-orders-page',
   standalone: true,
@@ -22,6 +29,9 @@ export class OrdersPage implements OnInit {
     this.loadOrders();
   }
 
+  /**
+   * Carga los pedidos desde el servicio.
+   */
   loadOrders(): void {
     this.isLoading = true;
     this.errorMessage = '';

@@ -1,6 +1,7 @@
 <section class="orders-container">
+
   <h1>Pedidos</h1>
-  <p>Listado de pedidos obtenidos desde el servidor NodeJS.</p>
+  <p>Listado de pedidos obtenidos desde el servidor.</p>
 
   @if (isLoading) {
     <p>Cargando pedidos...</p>
@@ -22,6 +23,7 @@
           <th>Estado</th>
         </tr>
       </thead>
+
       <tbody>
         @for (order of orders; track order.id) {
           <tr>
@@ -36,4 +38,5 @@
       </tbody>
     </table>
   }
+
 </section>
