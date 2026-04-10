@@ -1,0 +1,38 @@
+<section class="categories-container">
+
+  <h1>Categorías</h1>
+  <p>Listado de categorías obtenidas desde el servidor.</p>
+
+  @if (isLoading) {
+    <p>Cargando categorías...</p>
+  }
+
+  @if (errorMessage) {
+    <p>{{ errorMessage }}</p>
+  }
+
+  @if (!isLoading && !errorMessage) {
+    <table class="categories-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (category of categories; track category.id) {
+          <tr>
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td>{{ category.description }}</td>
+            <td>{{ category.status }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+</section>

@@ -1,0 +1,20 @@
+.categories-container {
+  padding: 24px;
+}
+
+.categories-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.categories-table th,
+.categories-table td {
+  border: 1px solid #dcdcdc;
+  padding: 10px;
+  text-align: left;
+}
+
+.categories-table th {
+  font-weight: 600;
+}
