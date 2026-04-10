@@ -60,6 +60,7 @@ export class App {
       { text: 'Productos', url: '/products' },
       { text: 'Ordenes', url: '/orders' },
       { text: 'Categorías', url: '/categories' },
+      { text: 'Sucursales', url: '/branches' }
     
     ]
   };
