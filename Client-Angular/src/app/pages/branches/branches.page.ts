@@ -1,36 +1,42 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Branch } from '../../interfaces/branch.interface';
 import { BranchesService } from '../../services/branches/branches.service';
 
 /**
- * Página de sucursales.
+ * Página encargada de mostrar el listado de sucursales.
  *
  * @remarks
- * Este componente se encarga de mostrar
- * el listado de sucursales obtenidas desde el backend.
+ * Esta vista consume el servicio de sucursales para
+ * obtener y mostrar la información enviada por el backend.
  */
 @Component({
-  selector: 'app-branches-page',
-  standalone: true,
-  imports: [CommonModule],
+  selector: 'app-branches',
   templateUrl: './branches.page.html',
-  styleUrl: './branches.page.scss'
+  styleUrls: ['./branches.page.scss'],
 })
 export class BranchesPage implements OnInit {
-
-  private readonly branchesService = inject(BranchesService);
-
+  /** Lista de sucursales obtenidas desde la API */
   public branches: Branch[] = [];
-  public isLoading = true;
+
+  /** Indica si la página se encuentra cargando datos */
+  public isLoading = false;
+
+  /** Mensaje de error en caso de fallo al consultar la API */
   public errorMessage = '';
 
+  /** Servicio de sucursales */
+  private readonly branchesService = inject(BranchesService);
+
+  /**
+   * Método del ciclo de vida que se ejecuta
+   * al inicializar el componente.
+   */
   ngOnInit(): void {
     this.loadBranches();
   }
 
   /**
-   * Carga el listado de sucursales desde el servicio.
+   * Carga la lista de sucursales desde el backend.
    */
   loadBranches(): void {
     this.isLoading = true;
@@ -39,12 +45,13 @@ export class BranchesPage implements OnInit {
     this.branchesService.getBranches(10).subscribe({
       next: (branches) => {
         this.branches = branches;
-        this.isLoading = false;
       },
       error: () => {
         this.errorMessage = 'No fue posible cargar las sucursales.';
+      },
+      complete: () => {
         this.isLoading = false;
-      }
+      },
     });
   }
 }

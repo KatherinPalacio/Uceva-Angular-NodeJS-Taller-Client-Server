@@ -1,36 +1,43 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OrdersService } from '../../services/orders/orders.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { Order } from '../../interfaces/order.interface';
+import { OrdersService } from '../../services/orders/orders.service';
 
 /**
- * Página de pedidos.
+ * Página encargada de mostrar el listado de pedidos.
  *
  * @remarks
- * Este componente se encarga de mostrar el listado
- * de pedidos obtenidos desde el backend.
+ * Esta vista consume el servicio de pedidos para
+ * obtener la información desde el backend y
+ * presentarla en pantalla.
  */
 @Component({
-  selector: 'app-orders-page',
-  standalone: true,
-  imports: [CommonModule],
+  selector: 'app-orders',
   templateUrl: './orders.page.html',
-  styleUrl: './orders.page.scss'
+  styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
-
-  private readonly ordersService = inject(OrdersService);
-
+  /** Lista de pedidos obtenidos desde la API */
   public orders: Order[] = [];
-  public isLoading = true;
+
+  /** Indica si la página se encuentra cargando datos */
+  public isLoading = false;
+
+  /** Mensaje de error en caso de fallo al consultar la API */
   public errorMessage = '';
 
+  /** Servicio de pedidos */
+  private readonly ordersService = inject(OrdersService);
+
+  /**
+   * Método del ciclo de vida de Angular que se ejecuta
+   * al inicializar el componente.
+   */
   ngOnInit(): void {
     this.loadOrders();
   }
 
   /**
-   * Carga los pedidos desde el servicio.
+   * Carga la lista de pedidos desde el backend.
    */
   loadOrders(): void {
     this.isLoading = true;
@@ -39,12 +46,13 @@ export class OrdersPage implements OnInit {
     this.ordersService.getOrders(10).subscribe({
       next: (orders) => {
         this.orders = orders;
-        this.isLoading = false;
       },
       error: () => {
         this.errorMessage = 'No fue posible cargar los pedidos.';
+      },
+      complete: () => {
         this.isLoading = false;
-      }
+      },
     });
   }
 }

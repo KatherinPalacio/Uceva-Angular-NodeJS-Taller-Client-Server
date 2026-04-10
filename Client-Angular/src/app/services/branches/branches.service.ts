@@ -1,31 +1,30 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Branch } from '../../interfaces/branch.interface';
 
 /**
- * Servicio de sucursales.
+ * Servicio encargado de gestionar las operaciones
+ * relacionadas con las sucursales.
  *
  * @remarks
- * Permite consumir la API de sucursales
- * expuesta por el backend.
+ * Este servicio consume la API del backend para
+ * obtener la información de las sucursales.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BranchesService {
-
-  private readonly apiUrl = 'api/branches';
-
-  constructor(private readonly http: HttpClient) {}
+  /** Servicio HttpClient para realizar peticiones HTTP */
+  private readonly http = inject(HttpClient);
 
   /**
-   * Obtiene el listado de sucursales.
+   * Obtiene una lista de sucursales desde el backend.
    *
-   * @param count - Cantidad de sucursales a solicitar.
-   * @returns Observable con el arreglo de sucursales.
+   * @param count Cantidad de sucursales que se desea consultar.
+   * @returns Observable con la lista de sucursales.
    */
   getBranches(count: number): Observable<Branch[]> {
-    return this.http.get<Branch[]>(`${this.apiUrl}/${count}`);
+    return this.http.get<Branch[]>(`api/branches/${count}`);
   }
 }
