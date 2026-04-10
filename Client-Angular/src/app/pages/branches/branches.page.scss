@@ -1,0 +1,20 @@
+.branches-container {
+  padding: 24px;
+}
+
+.branches-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.branches-table th,
+.branches-table td {
+  border: 1px solid #dcdcdc;
+  padding: 10px;
+  text-align: left;
+}
+
+.branches-table th {
+  font-weight: 600;
+}

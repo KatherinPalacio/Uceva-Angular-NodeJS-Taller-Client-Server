@@ -3,6 +3,7 @@ import { UsersPage } from './pages/users/users.page';
 import { ProductsPage } from './pages/products/products.page';
 import { OrdersPage } from './pages/orders/orders.page';
 import { CategoriesPage } from './pages/categories/categories.page';
+import { BranchesPage } from './pages/branches/branches.page';
 
 /**
  * Definición de las rutas principales de la aplicación.
@@ -18,6 +19,9 @@ import { CategoriesPage } from './pages/categories/categories.page';
  *
  * @see {@link UsersPage}
  * @see {@link ProductsPage}
+ * @see {@link OrdersPage}
+ * @see {@link CategoriesPage}
+ * @see {@link BranchesPage}
  */
 export const routes: Routes = [
 
@@ -55,9 +59,16 @@ export const routes: Routes = [
  * Renderiza el componente `CategoriesPage`, encargado
  * de mostrar y gestionar el listado de categorías.
  */
-{ path: 'categories', component: CategoriesPage },
+  { path: 'categories', component: CategoriesPage },
 
-  
+  /**
+ * Ruta de sucursales.
+ *
+ * @remarks
+ * Renderiza el componente `BranchesPage`, encargado
+ * de mostrar y gestionar el listado de sucursales.
+ */
+  { path: 'branches', component: BranchesPage },
 
   /**
    * Ruta comodín.

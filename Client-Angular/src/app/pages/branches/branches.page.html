@@ -1,0 +1,40 @@
+<section class="branches-container">
+
+  <h1>Sucursales</h1>
+  <p>Listado de sucursales obtenidas desde el servidor.</p>
+
+  @if (isLoading) {
+    <p>Cargando sucursales...</p>
+  }
+
+  @if (errorMessage) {
+    <p>{{ errorMessage }}</p>
+  }
+
+  @if (!isLoading && !errorMessage) {
+    <table class="branches-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Ciudad</th>
+          <th>Dirección</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (branch of branches; track branch.id) {
+          <tr>
+            <td>{{ branch.id }}</td>
+            <td>{{ branch.name }}</td>
+            <td>{{ branch.city }}</td>
+            <td>{{ branch.address }}</td>
+            <td>{{ branch.status }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+</section>
