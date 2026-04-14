@@ -5,11 +5,13 @@
  * Este arreglo contiene datos simulados de usuarios
  * para pruebas dentro del frontend.
  */
-export const USERS_MOCK = [
+  export const USERS_MOCK = [
   {
     id: 1,
-    firstName: 'Juan',
+    name: 'Juan',
     lastName: 'Pérez',
+    age: 22,
     email: 'juan@example.com',
+    engineering: 'Sistemas',
   },
 ];
